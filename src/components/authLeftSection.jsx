@@ -11,7 +11,7 @@ const AuthLeftSection = () => {
             </div>
             <div className="flex-1 flex items-center justify-center">
                 <img
-                    src="/src/assets/Group.png"
+                    src="/assets/Group.png"
                     alt="People"
                     className="w-96 max-w-xl h-96 flex self-end object-cover"
                 />

@@ -8,10 +8,10 @@ const Navbar = () => {
           <a href="/" className="flex items-center justify-center">
             <span className="text-xl font-bold">Logo</span>
           </a>
-          <a href="/" className="flex items-center justify-center">
+          <a href="/" className="flex items-center text-sm md:text-base justify-center">
             <span className="">About</span>
           </a>
-          <a href="/" className="flex items-center justify-center">
+          <a href="/" className="flex items-center text-sm md:text-base justify-center">
             <span className="">How It works</span>
           </a>
         </div>

@@ -110,7 +110,7 @@ const HowItWorks = () => {
         </div>
         <div className='flex justify-between'>
           <img
-            src="/src/assets/man-in-suit.png"
+            src="/assets/man-in-suit.png"
             alt=""
             className="hidden lg:flex self-end w-[300px] h-[300px]"
           />
@@ -130,7 +130,7 @@ const HowItWorks = () => {
             ))}
           </div>
           <img
-            src="/src/assets/woman.png"
+            src="/assets/woman.png"
             alt=""
             className="hidden lg:flex self-end w-[300px] h-[300px]"
           />
