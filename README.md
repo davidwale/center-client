@@ -37,7 +37,6 @@ A responsive frontend web application with authentication features, designed for
 -   **Frontend**: React (with Vite) and Tailwind CSS
 -   **Routing**: React Router DOM
 -   **State Management**: React Hooks
--   **Form Handling**: React Hook Form or a similar library (if applicable)
 
 * * * * *
 
@@ -91,7 +90,7 @@ The application will be available at `http://localhost:5173` by default.
 2.  **Authentication**:
     -   Navigate to the login or register page.
     -   Enter your credentials or create a new account.
-    -   Verify your email address (if applicable).
+    -   Verify your email address.
 3.  **Forget/Reset Password**:
     -   Use the "Forgot Password" link to initiate a password reset.
     -   Follow the steps to securely reset your password.
