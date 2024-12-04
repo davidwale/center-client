@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
 import AuthLeftSection from '../../components/authLeftSection';
 import { API_PATH } from '../../hooks/config';
 
@@ -12,6 +13,7 @@ const Login = () => {
   });
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,6 +26,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       setError('');
@@ -41,7 +44,9 @@ const Login = () => {
       } else {
         setError(response.data.message || "An Unexpected Error Occurred");
       }
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       setError(
         error.response?.data?.message || 'An error occurred. Please try again.'
       );
@@ -127,9 +132,17 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors"
+              className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors flex items-center justify-center"
+              disabled={isLoading}
             >
-              Login
+              {isLoading ? (
+                <>
+                  <Loader2 className="animate-spin mr-2" size={20} />
+                  Logging in...
+                </>
+              ) : (
+                'Login'
+              )}
             </button>
           </form>
 

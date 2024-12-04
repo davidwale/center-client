@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_PATH } from '../../hooks/config';
+import { Loader2 } from 'lucide-react';
 import AuthLeftSection from '../../components/authLeftSection';
 import { useNavigate } from 'react-router-dom';
 
@@ -111,10 +112,17 @@ const EmailVerification = () => {
 
                         <button
                             type="submit"
+                            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors flex items-center justify-center"
                             disabled={isLoading}
-                            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
                         >
-                            {isLoading ? 'Verifying...' : 'Verify'}
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="animate-spin mr-2" size={20} />
+                                    Verifying...
+                                </>
+                            ) : (
+                                'Verify'
+                            )}
                         </button>
                     </form>
                 </div>

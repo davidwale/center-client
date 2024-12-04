@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API_PATH } from '../../hooks/config';
+import { Loader2 } from 'lucide-react';
 import AuthLeftSection from '../../components/authLeftSection'
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ const ResetPassword = () => {
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
 
@@ -44,6 +46,7 @@ const ResetPassword = () => {
         }
 
         try {
+            setIsLoading(true);
             const email = localStorage.getItem('email');
             const response = await axios.post(`${API_PATH}/auth/reset-password`, {
                 email,
@@ -57,6 +60,7 @@ const ResetPassword = () => {
             setTimeout(() => navigate('/login'), 2500);
 
         } catch (error) {
+            setIsLoading(false);
             setError(error.response?.data?.message || 'An error occurred');
             console.error(error.response);
         }
@@ -154,9 +158,17 @@ const ResetPassword = () => {
 
                         <button
                             type="submit"
-                            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors"
+                            className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors flex items-center justify-center"
+                            disabled={isLoading}
                         >
-                            Reset Password
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="animate-spin mr-2" size={20} />
+                                    resetting...
+                                </>
+                            ) : (
+                                'Reset Password'
+                            )}
                         </button>
                     </form>
                 </div>

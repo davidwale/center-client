@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { API_PATH } from '../../hooks/config';
+import { Loader2 } from 'lucide-react';
 import AuthLeftSection from '../../components/authLeftSection';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,6 +17,7 @@ const Register = () => {
   });
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
 
@@ -46,6 +48,7 @@ const Register = () => {
     const { confirmPassword, ...dataToSend } = formData;
 
     try {
+      setIsLoading(true);
       const response = await axios.post(`${API_PATH}/auth/register`, dataToSend);
 
       if (response.data.message) {
@@ -57,6 +60,7 @@ const Register = () => {
       }
       localStorage.setItem('email', formData.email)
     } catch (error) {
+      setIsLoading(false);
       setError(error.response?.data?.message || 'An error occurred');
       console.error(error.response);
     }
@@ -204,9 +208,17 @@ const Register = () => {
 
             <button
               type="submit"
-              className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors"
+              className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors flex items-center justify-center"
+              disabled={isLoading}
             >
-              Register
+              {isLoading ? (
+                <>
+                  <Loader2 className="animate-spin mr-2" size={20} />
+                  Registering...
+                </>
+              ) : (
+                'Register'
+              )}
             </button>
           </form>
 
